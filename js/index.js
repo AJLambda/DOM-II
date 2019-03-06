@@ -19,27 +19,29 @@ allParagraphs = document.querySelectorAll('p');
 console.log('All paragraphs:', allParagraphs);
 allButtons = document.querySelectorAll('.btn');
 console.log('All buttons:', allButtons);
+firstButton = document.querySelector('.btn');
+console.log('First button:', firstButton)
 footer = document.querySelector('.footer');
 console.log('Footer:', footer);
 
 //BODY EVENT LISTENERS
-//Logs when a key is pressed down, the item that was pressed down
+//Runs when a key is pressed and console logs that key
 body.addEventListener('keydown', function(event){
     console.log(`Someone pressed a key down! This is the event: ${event.key}`)
 });
-
-//Select event shows what texts has been selected
-body.addEventListener('select', function(event){
-    const selection = event.target.value.substring(event.target.selectionStart, event.target.selectionEnd);
-    console.log(`you selected: ${selection}`);
+//Runs when a key is released and console logs that key
+body.addEventListener('keyup', function(event){
+    console.log(`Someone released the key! This is the event: ${event.key}`)
 });
 
 //HEADER EVENT LISTENERS
-//Make header larger and change color/pointer when hovering over with mouse
-funBusHeading.addEventListener('mouseover', function() {
+//Turn on new class properties in css
+//Make heading larger and change color/pointer when hovering over with mouse
+funBusHeading.addEventListener('mouseenter', function() {
     this.classList.add('funBusHeading');
 });
-//Make header return to original state when hovering out
+//Remove new class properties in css
+//Make heading return to original state when hovering out
 funBusHeading.addEventListener('mouseleave', function() {
     this.classList.remove('funBusHeading');
 });
@@ -51,6 +53,22 @@ navAnchors.forEach(node => {
         event.target.style.color = 'gray';
     });
 });
+//Changes color of each navigation item when double clicked
+navAnchors.forEach(node => {
+    node.addEventListener('dblclick', function(event){
+        //stop the nav items from refreshing the page
+        event.preventDefault();
+        event.target.style.color = 'red';
+    });
+});
+
+//H2 EVENT LISTENERS
+//changes color of all h2's when pointer is moved while over the element
+allH2.forEach(node => {
+    node.addEventListener('mousemove', function(event){
+        event.target.style.color = "orange";
+    });
+});
 
 //H4 EVENT LISTENERS
 //Changes color of all h4's when pointer is moved while over the element
@@ -60,19 +78,38 @@ allH4.forEach(node => {
     });
 });
 
-//TEXT CONTENT EVENT LISTENERS
+//TEXT CONTENT CLASS EVENT LISTENERS
 //Alert when any part of text content is copied.
 textContent.addEventListener('copy', function(event){
-    alert('You copied some text content');
+    alert('We know you copied that text content >.<');
+    //prevents bubbling
+    event.stopPropagation();
 });
 
 //PARAGRAPH EVENT LISTENERS
-//Alert when any part of paragraph is copied.
+//Alert when any part of paragraph is copied and turn paragraph red after
 allParagraphs.forEach(node => {
     node.addEventListener('copy', function(event){
-        alert("You copied a paragraph :0");
-        event.stopPropogation();
+        alert("We know you copied that paragraph :0");
+        event.target.style.color = "red";
+        //prevents bubbling
+        event.stopPropagation();
         });
+});
+
+//BUTTON EVENT LISTENERS
+//Change font size and cursor when mouse enters element
+allButtons.forEach(node => {
+    node.addEventListener('mouseenter', function(){
+    event.target.style.fontSize = "2.5rem";
+    event.target.style.cursor = "progress"; 
+    });
+});
+//Remove all elements when mouse leaves element
+allButtons.forEach(node => {
+    node.addEventListener('mouseleave', function(){
+    node.remove()
+    });
 });
 
 //FOOTER EVENT LISTENERS    
