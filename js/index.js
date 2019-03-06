@@ -39,12 +39,14 @@ body.addEventListener('keyup', function(event){
 //Make heading larger and change color/pointer when hovering over with mouse
 funBusHeading.addEventListener('mouseenter', function() {
     this.classList.add('funBusHeading');
+    TweenMax.to(".funBusHeading", 1.5, {y: 200, x: 20, ease: Bounce.easeOut})
 });
+
 //Remove new class properties in css
 //Make heading return to original state when hovering out
-funBusHeading.addEventListener('mouseleave', function() {
-    this.classList.remove('funBusHeading');
-});
+// funBusHeading.addEventListener('mouseleave', function() {
+//     this.classList.remove('funBusHeading');
+// });
 //Changes color of each navigation item when clicked
 navAnchors.forEach(node => {
     node.addEventListener('click', function(event){
@@ -58,7 +60,7 @@ navAnchors.forEach(node => {
     node.addEventListener('dblclick', function(event){
         //stop the nav items from refreshing the page
         event.preventDefault();
-        event.target.style.color = 'red';
+        event.target.style.backgroundColor = 'lightgray';
     });
 });
 

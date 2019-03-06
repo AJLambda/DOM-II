@@ -175,9 +175,10 @@ img {
   }
 }
 .funBusHeading {
-  font-size: 75px;
-  color: green;
+  font-size: 6.5rem;
+  color: orange;
   cursor: crosshair;
+  position: absolute;
 }
 .main-navigation {
   width: 100%;
